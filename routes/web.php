@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Admin\DashboardController;
 
 // Halaman login
 Route::get('/login', [AuthController::class, 'showLogin'])
@@ -19,7 +20,6 @@ Route::post('/logout', [AuthController::class, 'logout'])
 
 // Dashboard admin
 Route::middleware('auth')->group(function () {
-    Route::get('/admin/dashboard', function () {
-        return Inertia::render('Dashboard');
-    })->name('dashboard');
+    Route::get('/admin/dashboard', [DashboardController::class, 'index'])
+        ->name('dashboard');
 });
