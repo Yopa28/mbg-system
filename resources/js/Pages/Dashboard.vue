@@ -1,48 +1,28 @@
 <script setup>
-import { Head, router } from '@inertiajs/vue3';
-
-defineProps({
-    auth: Object,
-});
-
-const logout = () => {
-    router.post('/logout');
-};
+import { Head } from '@inertiajs/vue3';
+import AdminLayout from '../Layouts/AdminLayout.vue';
 </script>
 
 <template>
-    <Head title="Dashboard Admin" />
+    <Head title="Ringkasan Admin" />
 
-    <main class="min-h-screen bg-slate-50 p-8">
-        <div class="mx-auto max-w-6xl">
-            <header class="flex items-center justify-between">
-                <div>
-                    <h1 class="text-2xl font-bold text-slate-800">
-                        Dashboard MBG
-                    </h1>
-
-                    <p class="mt-1 text-sm text-slate-500">
-                        Selamat datang di panel admin.
-                    </p>
-                </div>
-
-                <button
-                    @click="logout"
-                    class="rounded-lg bg-red-600 px-4 py-2 text-sm font-medium text-white hover:bg-red-700"
-                >
-                    Logout
-                </button>
-            </header>
-
-            <section class="mt-8 rounded-xl border border-slate-200 bg-white p-6">
-                <h2 class="text-lg font-semibold text-slate-800">
-                    Selamat datang!
-                </h2>
-
-                <p class="mt-2 text-slate-600">
-                    Login berhasil. Dashboard admin MBG System siap dikembangkan.
-                </p>
-            </section>
+    <AdminLayout>
+        <div class="flex flex-col gap-1">
+            <h1 class="text-2xl font-bold text-slate-900">
+                Ringkasan
+            </h1>
+            <p class="text-sm text-slate-500">
+                Ikhtisar operasional distribusi menu dan status publikasi gizi MBG.
+            </p>
         </div>
-    </main>
+
+        <section class="mt-6 rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
+            <h2 class="text-lg font-semibold text-slate-900">
+                Selamat datang di Dashboard MBG
+            </h2>
+            <p class="mt-2 text-sm text-slate-500">
+                Login berhasil. Dashboard admin siap dikembangkan.
+            </p>
+        </section>
+    </AdminLayout>
 </template>
