@@ -41,8 +41,9 @@ class Menu extends Model
     }
 
     public function portions(): HasMany
-    {
-        return $this->hasMany(MenuPortion::class, 'menu_id');
+{
+    return $this->hasMany(MenuPortion::class, 'menu_id')
+        ->orderByRaw("CASE portion_type WHEN 'large' THEN 1 WHEN 'small' THEN 2 ELSE 3 END");
     }
 
     public function publicationLogs(): HasMany
