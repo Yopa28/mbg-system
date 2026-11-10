@@ -32,7 +32,7 @@ class DashboardController extends Controller
         $todayMenu = Menu::with([
             'sppg',
             'portions.nutrition',
-            'portions.foodComponents',
+            'portions.foodComponents.componentIngredients.ingredient',
         ])
             ->whereDate('serving_date', now()->toDateString())
             ->first();
