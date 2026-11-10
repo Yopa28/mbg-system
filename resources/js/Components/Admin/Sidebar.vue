@@ -1,6 +1,8 @@
 
+
 <script setup>
 import { router, usePage } from '@inertiajs/vue3';
+import { computed } from 'vue';
 
 defineProps({
     open: {
@@ -10,8 +12,12 @@ defineProps({
 });
 
 const emit = defineEmits(['close']);
-
 const page = usePage();
+
+const admin = computed(() => page.props.auth?.user);
+
+const adminName = computed(() => admin.value?.name || 'Admin MBG');
+const adminEmail = computed(() => admin.value?.email || 'Administrator');
 
 const isActive = (path) => page.url === path;
 
@@ -23,6 +29,7 @@ const closeSidebar = () => {
     emit('close');
 };
 </script>
+
 
 <template>
     <!-- Backdrop Mobile -->
@@ -129,9 +136,11 @@ const closeSidebar = () => {
 
                     <div class="min-w-0">
                         <p class="truncate text-sm font-semibold text-slate-800">
-                            Admin MBG
+                            {{ adminName }}
                         </p>
-                        <p class="text-xs text-slate-500">Administrator</p>
+                        <p class="truncate text-xs text-slate-500">
+                            {{ adminEmail }}
+                        </p>
                     </div>
                 </div>
 
