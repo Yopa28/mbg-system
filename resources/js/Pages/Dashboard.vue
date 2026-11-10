@@ -27,14 +27,27 @@ defineProps({
     <Head title="Ringkasan Admin" />
 
     <AdminLayout>
-        <div class="flex flex-col gap-1">
-            <h1 class="text-2xl font-bold text-slate-900">
-                Ringkasan
-            </h1>
-            <p class="text-sm text-slate-500">
-                Ikhtisar operasional distribusi menu dan status publikasi gizi MBG.
-            </p>
+
+        <!-- Header Dashboard -->
+        <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <div class="flex flex-col gap-1">
+                <h1 class="text-2xl font-bold text-slate-900">
+                    Ringkasan
+                </h1>
+                <p class="text-sm text-slate-500">
+                    Ikhtisar operasional distribusi menu dan status publikasi gizi MBG.
+                </p>
+            </div>
+
+            <a
+                href="/admin/menus/create"
+                class="inline-flex w-fit items-center justify-center gap-2 rounded-lg bg-blue-600 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-700"
+            >
+                <span class="material-symbols-outlined text-lg">add</span>
+                Tambah Menu
+            </a>
         </div>
+
 
         <!-- Konten dashboard akan ditambahkan pada tahap berikutnya -->
 
@@ -370,6 +383,68 @@ defineProps({
                 </p>
             </div>
         </section>
+
+        <!-- Profil SPPG -->
+        <section class="mt-6 rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
+            <div class="flex items-center gap-3">
+                <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-blue-50 text-blue-600">
+                    <span class="material-symbols-outlined text-2xl">domain</span>
+                </div>
+
+                <div>
+                    <h2 class="font-bold text-slate-900">
+                        Profil SPPG
+                    </h2>
+                    <p class="text-xs text-slate-500">
+                        Informasi satuan pelayanan pemenuhan gizi
+                    </p>
+                </div>
+            </div>
+
+            <div v-if="sppgProfile" class="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2">
+                <div>
+                    <p class="text-xs text-slate-500">Nama SPPG</p>
+                    <p class="mt-1 text-sm font-semibold text-slate-800">
+                        {{ sppgProfile.name }}
+                    </p>
+                </div>
+
+                <div>
+                    <p class="text-xs text-slate-500">Kode SPPG</p>
+                    <p class="mt-1 text-sm font-semibold text-slate-800">
+                        {{ sppgProfile.code }}
+                    </p>
+                </div>
+
+                <div class="sm:col-span-2">
+                    <p class="text-xs text-slate-500">Alamat</p>
+                    <p class="mt-1 text-sm text-slate-700">
+                        {{ sppgProfile.address || 'Alamat belum diisi' }}
+                    </p>
+                </div>
+
+                <div>
+                    <p class="text-xs text-slate-500">Nomor Telepon</p>
+                    <p class="mt-1 text-sm text-slate-700">
+                        {{ sppgProfile.phone || '-' }}
+                    </p>
+                </div>
+
+                <div>
+                    <p class="text-xs text-slate-500">Email</p>
+                    <p class="mt-1 text-sm text-slate-700">
+                        {{ sppgProfile.email || '-' }}
+                    </p>
+                </div>
+            </div>
+
+            <div v-else class="mt-5 rounded-lg bg-slate-50 p-4">
+                <p class="text-sm text-slate-500">
+                    Profil SPPG belum tersedia.
+                </p>
+            </div>
+        </section>
+
 
 
 
