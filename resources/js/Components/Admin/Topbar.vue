@@ -1,11 +1,26 @@
 
+
 <script setup>
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
+import { usePage } from '@inertiajs/vue3';
 
 const emit = defineEmits(['toggle-sidebar']);
 
 const searchQuery = ref('');
+const page = usePage();
+
+const adminInitial = computed(() => {
+    const name = page.props.auth?.user?.name || 'Admin MBG';
+
+    return name
+        .split(' ')
+        .filter(Boolean)
+        .slice(0, 2)
+        .map((word) => word.charAt(0).toUpperCase())
+        .join('');
+});
 </script>
+
 
 <template>
     <header
@@ -73,10 +88,13 @@ const searchQuery = ref('');
             </button>
 
             <!-- Admin Avatar -->
-            <div class="flex h-9 w-9 items-center justify-center rounded-full bg-blue-600 text-white">
-                <span class="material-symbols-outlined text-xl">
-                    person
-                </span>
+
+<!-- Admin Avatar -->
+            <div
+                class="flex h-9 w-9 items-center justify-center rounded-full bg-blue-600 text-sm font-semibold text-white"
+                :title="page.props.auth?.user?.name || 'Admin MBG'"
+            >
+                {{ adminInitial }}
             </div>
         </div>
     </header>
